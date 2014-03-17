@@ -1,0 +1,64 @@
+#{extends 'red.html' /}
+<!DOCTYPE html>
+                                 
+<html>
+<head>
+    <title>File Uploads</title>
+	<script src="http://jwpsrv.com/library/6LTSqKNjEeOXXSIACrqE1A.js"></script>
+    
+</head>
+<body>
+<b>Messaging Thread:</b> <br>
+       <h1>${mainThread.comment}</h1>
+       <i>by ${mainThread.user}</i>
+<ul>
+<div class="container">
+      <div class="col-md-7">
+          <video width="480" height="360" controls>
+            <source src="http://${play.configuration['cloudfront']}/${mainThread.fileId}" type=video/mp4>
+            <!--  
+            <source src="http://d1cqwc76ahu1d1.cloudfront.net/${mainThread.fileId}" type=video/mp4>
+            -->
+            
+          </video>
+        <br>
+
+      </div>
+    </div>
+    
+</ul>
+<ul>
+<b>Replies: </b><br/>
+<!--  ${mainThread.fileName}-->
+#{list replyThreads, as:'rThread'}
+	<br>
+   <div class = container">
+   <div class="col-lg-4">
+            <video width="320" height="240" controls>
+              <source src="http://${play.configuration['cloudfront']}/${rThread.fileId}" type=video/mp4>
+            </video>
+          
+          <br>
+          <b>Comment: </b>${rThread.comment}
+          <br><i>By ${rThread.user}</i>
+          </div>
+          </div>
+#{/list}
+</ul>
+<ul>
+<br>
+<b>Reply Form</b>
+<br>
+#{form @doUpload(), enctype:'multipart/form-data'}
+   
+   <input type="file" name="file"><br/><br/>
+   <pre>
+   Comment: <input type="text" name="comment"><br/>
+   Username: <input type="text" name="user"> 
+  <input type="hidden" name="ParentId" value=${ParentId}>
+  <input type="submit" name="submit" value="Reply">
+  </pre>
+#{/form}
+</ul>
+</body>
+</html>

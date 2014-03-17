@@ -1,0 +1,21 @@
+#{extends 'red.html' /}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Subscribe to TweetTube</title>
+</head>
+<body>
+<h2>Enter your email-ID to subscribe to TweetTube Updates</h2>
+<pre>
+#{form @SNSubscribe(), enctype:'multipart/form-data'}
+   
+   Email: <input type="text" name="email"><br/>
+   <input type="submit" name="submit" value="Subscribe">
+		  
+#{/form}
+</pre>
+</ul>
+</body>
+</html>
